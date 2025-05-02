@@ -1,7 +1,8 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>🖊️ Important Note</title>
   <style>
     html, body {
@@ -71,27 +72,37 @@
     }
   </style>
 </head>
-<body><button id="editBtn">Edit</button>
+<body>
 
+<button id="editBtn">Edit</button>
 <h1>🔥 Important Note</h1>
-<textarea id="note" readonly></textarea><div class="buttons">
+<textarea id="note" readonly></textarea>
+
+<div class="buttons">
   <button id="copyBtn">Copy</button>
   <button id="saveBtn">Save</button>
-</div><div id="message"></div>
-<div id="timestamp"></div><!-- Firebase --><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script><script>
+</div>
+
+<div id="message"></div>
+<div id="timestamp"></div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+<script>
   const firebaseConfig = {
-    apiKey: "AIzaSyC7T-NewAPIKEY-ReplaceThis",
-    authDomain: "new-note-page.firebaseapp.com",
-    databaseURL: "https://new-note-page-default-rtdb.firebaseio.com",
-    projectId: "new-note-page",
-    storageBucket: "new-note-page.appspot.com",
-    messagingSenderId: "123456789000",
-    appId: "1:123456789000:web:abcdef0123456789"
+    apiKey: "AIzaSyADDr1FyJrGS0f42vElIY9BnXiRg-RCjws",
+    authDomain: "trending1-bb86b.firebaseapp.com",
+    databaseURL: "https://trending1-bb86b-default-rtdb.firebaseio.com/",
+    projectId: "trending1-bb86b",
+    storageBucket: "trending1-bb86b.appspot.com",
+    messagingSenderId: "345862618423",
+    appId: "1:345862618423:web:94ceb0ed96f9f468562eb2"
   };
 
   firebase.initializeApp(firebaseConfig);
   const db = firebase.database();
-  const noteRef = db.ref("note2");
+  const noteRef = db.ref("note");
 
   const note = document.getElementById("note");
   const editBtn = document.getElementById("editBtn");
@@ -100,7 +111,6 @@
   const message = document.getElementById("message");
   const timestamp = document.getElementById("timestamp");
 
-  // Load note
   noteRef.on("value", snapshot => {
     note.value = snapshot.val()?.text || "";
     timestamp.innerText = snapshot.val()?.updatedAt ? `Last Updated: ${snapshot.val().updatedAt}` : "";
@@ -115,7 +125,6 @@
   saveBtn.onclick = () => {
     const now = new Date();
     const formatted = now.toLocaleString('en-GB', { hour12: false });
-
     noteRef.set({
       text: note.value,
       updatedAt: formatted
@@ -133,5 +142,7 @@
     message.innerText = "🔗 Copied to clipboard!";
     setTimeout(() => message.innerText = "", 3000);
   };
-</script></body>
+</script>
+
+</body>
 </html>
