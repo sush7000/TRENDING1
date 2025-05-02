@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🖊️ Important Note</title>
   <style>
     html, body {
@@ -86,7 +86,7 @@
 <div id="message"></div>
 <div id="timestamp"></div>
 
-<!-- Firebase SDK -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 <script>
@@ -111,6 +111,7 @@
   const message = document.getElementById("message");
   const timestamp = document.getElementById("timestamp");
 
+  // Load note
   noteRef.on("value", snapshot => {
     note.value = snapshot.val()?.text || "";
     timestamp.innerText = snapshot.val()?.updatedAt ? `Last Updated: ${snapshot.val().updatedAt}` : "";
@@ -125,6 +126,7 @@
   saveBtn.onclick = () => {
     const now = new Date();
     const formatted = now.toLocaleString('en-GB', { hour12: false });
+
     noteRef.set({
       text: note.value,
       updatedAt: formatted
